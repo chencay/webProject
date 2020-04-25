@@ -10,9 +10,9 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: memor
+      database: memorpro
   datasource:
-    url: jdbc:mysql://localhost:3306/memor
+    url: jdbc:mysql://localhost:3306/memorpro
     username: root
     password: 0313..Ycx
     type: com.alibaba.druid.pool.DruidDataSource
