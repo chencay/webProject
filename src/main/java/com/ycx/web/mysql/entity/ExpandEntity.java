@@ -9,7 +9,7 @@ import java.util.Date;
  * @description 创建人、修改人、创建时间、修改时间
  * @date 2020/4/25 10:08 下午
  **/
-public abstract class expandEntity extends IdEntity{
+public abstract class ExpandEntity extends IdEntity{
 
     /** 年月日格式 **/
     private static final String TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";

@@ -1,7 +1,6 @@
 package com.ycx.web.mysql.entity;
 
 import javax.persistence.Entity;
-import java.util.List;
 
 /**
  * @author ycx
@@ -9,7 +8,7 @@ import java.util.List;
  * @date 2020/4/25 8:59 下午
  **/
 @Entity(name = "user")
-public class User extends expandEntity {
+public class User extends ExpandEntity {
 
     /**用户名**/
     private String username;
