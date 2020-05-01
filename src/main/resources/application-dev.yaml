@@ -12,7 +12,8 @@ spring:
       port: 27017
       database: memorpro
   datasource:
-    url: jdbc:mysql://localhost:3306/memorpro
-    username: root
-    password: 0313..Ycx
-    type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/memorpro?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+      username: root
+      password: 0313..Ycx
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
