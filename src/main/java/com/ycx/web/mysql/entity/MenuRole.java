@@ -8,7 +8,7 @@ package com.ycx.web.mysql.entity;
 public class MenuRole extends IdEntity{
     /** menu id**/
     private Long menuId;
-    /** roleId**/
+    /** roleId **/
     private Long roleId;
 
     /**
