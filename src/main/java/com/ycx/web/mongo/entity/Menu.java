@@ -1,15 +1,17 @@
-package com.ycx.web.mysql.entity;
+package com.ycx.web.mongo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+
+import org.springframework.data.annotation.Id;
 
 /**
  * @author ycx
  * @description 资源表，用于动态配置权限、返回vue数据
  * @date 2020/5/1 4:47 下午
  **/
-@Entity(name = "menu")
-public class Menu extends IdEntity{
+public class Menu {
+    /** id **/
+    @Id
+    private String id;
     /** 用户能访问的url **/
     private String url;
     /** vue路由的path **/
@@ -22,6 +24,22 @@ public class Menu extends IdEntity{
     private int parentId;
     /** 状态 **/
     private int status;
+
+    /**
+     * getId
+     * @return String
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * setId
+     * @param id id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * getUrl

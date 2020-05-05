@@ -1,18 +1,38 @@
-package com.ycx.web.mysql.entity;
+package com.ycx.web.mongo.entity;
 
-import javax.persistence.Entity;
+import org.springframework.data.annotation.Id;
+
 
 /**
  * @author ycx
- * @description 资源表与角色表的关联表
+ * @description 资源实体与角色实体关联的实体类
  * @date 2020/5/1 5:11 下午
  **/
-@Entity(name = "menuRole")
-public class MenuRole extends IdEntity{
+public class MenuRole {
+
+    /** id **/
+    @Id
+    private String id;
     /** menu id**/
     private Long menuId;
     /** roleId **/
     private Long roleId;
+
+    /**
+     * getId
+     * @return String
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * setId
+     * @param id id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * getMenuId
