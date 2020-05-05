@@ -1,10 +1,14 @@
 package com.ycx.web.mysql.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  * @author ycx
  * @description 资源表，用于动态配置权限、返回vue数据
  * @date 2020/5/1 4:47 下午
  **/
+@Entity(name = "menu")
 public class Menu extends IdEntity{
     /** 用户能访问的url **/
     private String url;

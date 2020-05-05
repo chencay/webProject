@@ -1,10 +1,13 @@
 package com.ycx.web.mysql.entity;
 
+import javax.persistence.Entity;
+
 /**
  * @author ycx
  * @description 资源表与角色表的关联表
  * @date 2020/5/1 5:11 下午
  **/
+@Entity(name = "menuRole")
 public class MenuRole extends IdEntity{
     /** menu id**/
     private Long menuId;
