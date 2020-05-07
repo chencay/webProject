@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +17,8 @@ import java.util.List;
  * @description 简单的用户信息
  * @date 2020/4/25 8:59 下午
  **/
-public class User extends ExpandEntity implements UserDetails{
+@Entity
+public class User extends ExpandEntity{
 
     /** 用户名 **/
     private String username;
@@ -33,88 +35,103 @@ public class User extends ExpandEntity implements UserDetails{
     /** 角色 **/
     private String roles;
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
+    /**
+     * setUsername
+     * @param username username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Override
-    @JsonIgnore
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<Role> roleList = JSONObject.parseObject(roles, List.class);
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roleList.size());
-        for (Role role : roleList) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
+    /**
+     * setPassword
+     * @param password password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * getTelephone
+     * @return telephone
+     */
     public String getTelephone() {
         return telephone;
     }
 
+    /**
+     * setTelephone
+     * @param telephone telephone
+     */
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
+    /**
+     * getAddress
+     * @return String
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * setAddress
+     * @param address address
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
+    /**
+     * setEnabled
+     * @param enabled enabled
+     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     * isLocked
+     * @return boolean
+     */
     public boolean isLocked() {
         return locked;
     }
 
+    /**
+     * setLocked
+     * @param locked locked
+     */
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
+    /**
+     * getRoles
+     * @return List<Role>
+     */
     public String getRoles() {
         return roles;
     }
 
+    /**
+     * setRoles
+     * @param roles roles
+     */
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

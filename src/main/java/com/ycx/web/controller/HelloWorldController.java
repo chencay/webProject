@@ -2,6 +2,8 @@ package com.ycx.web.controller;
 
 import com.ycx.web.mongo.entity.UserInfo;
 import com.ycx.web.mongo.service.UserInfoService;
+import com.ycx.web.mysql.entity.User;
+import com.ycx.web.mysql.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,9 @@ public class HelloWorldController {
     /** UserInfoService **/
     @Resource
     private UserInfoService userInfoService;
+    /** UserService **/
+    @Resource
+    private UserService userService;
 
     /**
      * helloWorld
@@ -28,10 +33,10 @@ public class HelloWorldController {
     @GetMapping("/hello")
     @ResponseBody
     public String helloWorld() {
-        UserInfo userInfo = new UserInfo();
+        User userInfo = new User();
         userInfo.setUsername("yuchengxin");
         userInfo.setPassword("666666");
-        userInfoService.save(userInfo);
+        userService.save(userInfo);
         return "hello, world!";
     }
 }
