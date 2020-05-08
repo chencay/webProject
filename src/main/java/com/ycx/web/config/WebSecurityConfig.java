@@ -1,6 +1,7 @@
 package com.ycx.web.config;
 
 import com.ycx.web.mongo.service.impl.UserInfoServiceImpl;
+import com.ycx.web.mysql.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +18,9 @@ import javax.annotation.Resource;
  **/
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /** UserInfoService **/
+    /** UserService **/
     @Resource
-    UserInfoServiceImpl userInfoServiceImpl;
+    UserService userService;
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -28,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userInfoServiceImpl);
+        auth.userDetailsService(userService);
     }
 
     @Override
