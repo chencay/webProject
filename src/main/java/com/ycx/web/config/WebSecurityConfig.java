@@ -2,6 +2,9 @@ package com.ycx.web.config;
 
 import com.ycx.web.mongo.service.impl.UserInfoServiceImpl;
 import com.ycx.web.mysql.service.UserService;
+import com.ycx.web.service.CustomAuthenticationAccessDeniedHandler;
+import com.ycx.web.service.CustomUrlAccessDecisionManager;
+import com.ycx.web.service.CustomUrlFilterInvocationSecurityMetadataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /** UserService **/
     @Resource
     UserService userService;
+    @Resource
+    CustomUrlFilterInvocationSecurityMetadataSource customUrlFilterInvocationSecurityMetadataSource;
+    @Resource
+    CustomUrlAccessDecisionManager customUrlAccessDecisionManager;
+    @Resource
+    CustomAuthenticationAccessDeniedHandler customAuthenticationAccessDeniedHandler;
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
