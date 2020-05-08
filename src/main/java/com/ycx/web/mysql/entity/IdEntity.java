@@ -14,14 +14,14 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class IdEntity {
     /**自增id**/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**
      * getId
      * @return Long
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

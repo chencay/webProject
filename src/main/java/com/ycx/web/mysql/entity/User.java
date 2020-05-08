@@ -1,13 +1,14 @@
 package com.ycx.web.mysql.entity;
 
-import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ycx.web.mongo.entity.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,8 +19,9 @@ import java.util.List;
  * @date 2020/4/25 8:59 下午
  **/
 @Entity
-public class User extends ExpandEntity{
+public class User extends ExpandEntity implements UserDetails, Serializable {
 
+    private static final long serialVersionUID = 1L;
     /** 用户名 **/
     private String username;
     /** 密码 **/
@@ -33,7 +35,9 @@ public class User extends ExpandEntity{
     /** 当前账户是否未锁定 **/
     private boolean locked;
     /** 角色 **/
-    private String roles;
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    private List<Role> roles;
+
 
     /**
      * setUsername
@@ -111,7 +115,7 @@ public class User extends ExpandEntity{
      * getRoles
      * @return List<Role>
      */
-    public String getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
@@ -119,18 +123,45 @@ public class User extends ExpandEntity{
      * setRoles
      * @param roles roles
      */
-    public void setRoles(String roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        }
+        return authorities;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
     public boolean isEnabled() {
         return enabled;
     }

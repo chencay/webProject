@@ -1,6 +1,8 @@
-package com.ycx.web.mongo.entity;
+package com.ycx.web.mysql.entity;
 
 import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
 
 
 /**
@@ -8,30 +10,12 @@ import org.springframework.data.annotation.Id;
  * @description 用户角色
  * @date 2020/5/1 10:25 上午
  **/
-public class Role {
-    /** id **/
-    @Id
-    private String id;
+@Entity
+public class Role extends IdEntity{
     /**角色名称**/
     private String roleName;
     /**中文角色名称**/
     private String roleChName;
-
-    /**
-     * getId
-     * @return String
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * setId
-     * @param id id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * getRoleName

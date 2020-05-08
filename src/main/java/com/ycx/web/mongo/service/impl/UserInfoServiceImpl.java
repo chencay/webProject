@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @date 2020/5/5 9:10 下午
  **/
 @Component
-public class UserInfoServiceImpl implements UserInfoService, UserDetailsService {
+public class UserInfoServiceImpl implements UserInfoService {
 
     /** UserInfoDao **/
     @Resource
@@ -28,14 +28,5 @@ public class UserInfoServiceImpl implements UserInfoService, UserDetailsService 
             return null;
         }
         return userInfoDao.save(userInfo);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserInfo userInfo = userInfoDao.findByUsername(username);
-        if (null == userInfo) {
-            throw new UsernameNotFoundException("用户名不存在");
-        }
-        return userInfo;
     }
 }

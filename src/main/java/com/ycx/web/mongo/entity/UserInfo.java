@@ -1,5 +1,6 @@
 package com.ycx.web.mongo.entity;
 
+import com.ycx.web.mysql.entity.Role;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +16,7 @@ import java.util.List;
  * @description 用户信息
  * @date 2020/5/5 8:26 下午
  **/
-public class UserInfo extends DateTimeEntity implements Serializable, UserDetails {
+public class UserInfo extends DateTimeEntity implements Serializable {
 
     /** id **/
     @Id
@@ -33,7 +34,7 @@ public class UserInfo extends DateTimeEntity implements Serializable, UserDetail
     /** 当前账户是否未锁定 **/
     private boolean locked;
     /** 角色 **/
-    private List<Role> roles;
+//    private List<Role> roles;
 
     /**
      * getId
@@ -123,58 +124,58 @@ public class UserInfo extends DateTimeEntity implements Serializable, UserDetail
         this.locked = locked;
     }
 
-    /**
-     * getRoles
-     * @return List<Role>
-     */
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    /**
-     * setRoles
-     * @param roles roles
-     */
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-        }
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
+//    /**
+//     * getRoles
+//     * @return List<Role>
+//     */
+//    public List<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    /**
+//     * setRoles
+//     * @param roles roles
+//     */
+//    public void setRoles(List<Role> roles) {
+//        this.roles = roles;
+//    }
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
+//        for (Role role : roles) {
+//            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+//        }
+//        return authorities;
+//    }
+//
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return !locked;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return enabled;
+//    }
 }

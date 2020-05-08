@@ -16,10 +16,12 @@ public abstract class ExpandEntity extends IdEntity{
     /** 创造人 **/
     protected String creatorName;
     /** 创造时间 **/
+    @JsonFormat(pattern = TIME_FORMAT, timezone = "GMT+08:00")
     protected Date createTime = new Date();
     /** 修改人 **/
     protected String modifierName;
     /** 修改时间 **/
+    @JsonFormat(pattern = TIME_FORMAT, timezone = "GMT+08:00")
     protected Date modifyTime;
 
     /**
@@ -42,7 +44,6 @@ public abstract class ExpandEntity extends IdEntity{
      * getCreateTime
      * @return Date
      */
-    @JsonFormat(pattern = TIME_FORMAT, timezone = "GMT+08:00")
     public Date getCreateTime() {
         return createTime;
     }
@@ -75,7 +76,6 @@ public abstract class ExpandEntity extends IdEntity{
      * getModifyTime
      * @return Date
      */
-    @JsonFormat(pattern = TIME_FORMAT, timezone = "GMT+08:00")
     public Date getModifyTime() {
         return modifyTime;
     }

@@ -1,17 +1,24 @@
-package com.ycx.web.mongo.entity;
+package com.ycx.web.mysql.entity;
 
 
 import org.springframework.data.annotation.Id;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author ycx
  * @description 资源表，用于动态配置权限、返回vue数据
  * @date 2020/5/1 4:47 下午
  **/
-public class Menu {
-    /** id **/
-    @Id
-    private String id;
+@Entity
+public class Menu extends IdEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     /** 用户能访问的url **/
     private String url;
     /** vue路由的path **/
@@ -24,22 +31,9 @@ public class Menu {
     private int parentId;
     /** 状态 **/
     private int status;
-
-    /**
-     * getId
-     * @return String
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * setId
-     * @param id id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+    /** 角色 **/
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    private List<Role> roles;
 
     /**
      * getUrl
@@ -135,5 +129,21 @@ public class Menu {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    /**
+     * getRoles
+     * @return List<Role>
+     */
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    /**
+     * setRoles
+     * @param roles roles
+     */
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
