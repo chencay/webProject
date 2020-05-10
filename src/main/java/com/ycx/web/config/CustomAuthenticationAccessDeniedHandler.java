@@ -1,4 +1,4 @@
-package com.ycx.web.service;
+package com.ycx.web.config;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

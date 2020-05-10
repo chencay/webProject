@@ -1,4 +1,4 @@
-package com.ycx.web.service;
+package com.ycx.web.config;
 
 import com.ycx.web.mysql.entity.Menu;
 import com.ycx.web.mysql.entity.Role;
